@@ -40,7 +40,6 @@ def ft_describe(data: pd.DataFrame) -> pd.DataFrame:
     - CV: The coefficient of variation (Std / Mean)
     - Std²: The variance (Std²)
 
-
     Args:
         data (pd.DataFrame): The dataset to describe
 
