@@ -44,7 +44,15 @@ def save_predictions(predictions, filename):
     house_mapping = {0: 'Gryffindor', 1: 'Hufflepuff', 2: 'Ravenclaw', 3: 'Slytherin'}
     house_predictions = [house_mapping[pred] for pred in predictions]
     df = pd.DataFrame(house_predictions, columns=['Predicted House'])
-    df.to_csv(filename, index=False)
+    df.to_csv(filename, index=True, header=False)
+
+    with open(filename, 'r') as file:
+        house_pred = file.readlines()
+        house_pred = ["Index, Hogwarts House" + '\n'] + house_pred
+    with open(filename, 'w') as file:
+        file.writelines(house_pred)
+
+
 
 weights, biases = load_weights('weights.json')
 df = pd.read_csv("data/dataset_test.csv")
