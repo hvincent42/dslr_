@@ -1,12 +1,9 @@
-import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn import datasets
-import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 
 from log_regression_ova import LogisticRegressionOvA
-import utils as utils
+import utils_h as utils
 
 def scale_columns(data):
     

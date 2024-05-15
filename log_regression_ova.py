@@ -15,7 +15,6 @@ class LogisticRegressionOvA():
 
     def fit(self, X, y):
         n_samples, n_features = X.shape
-        # print(f'X shape: {X.shape}')
         self.classes = np.unique(y)
 
         for c in self.classes:
@@ -35,22 +34,11 @@ class LogisticRegressionOvA():
 
             self.weights.append(weights_c)
             self.bias.append(bias_c)
-    
-    # def predict(self, X):
-    #     predictions = []
-    #     for i, w in enumerate(self.weights):
-    #         linear_model = np.dot(X, w) + self.bias[i]
-    #         predictions.append(sigmoid(linear_model))
-    #     predictions = np.array(predictions).T
-    #     predicted_class = self.classes[np.argmax(predictions, axis=1)]
-    #     return predicted_class
 
     def save_weights(self):
         weights_and_biases = {'weights': [w.tolist() for w in self.weights], 'biases': self.bias}
 
-        # Specify the file name
-        file_name = 'logistic_regression_weights.json'
+        file_name = 'weights.json'
 
-        # Save to a file
         with open(file_name, 'w') as f:
             json.dump(weights_and_biases, f)

@@ -15,7 +15,7 @@ def scale_columns(data):
 
 
 
-df = pd.read_csv('datasets/dataset_train.csv')
+df = pd.read_csv('data/dataset_train.csv')
 
 
 
