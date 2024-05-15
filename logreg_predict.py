@@ -44,18 +44,18 @@ def save_predictions(predictions, filename):
     house_mapping = {0: 'Gryffindor', 1: 'Hufflepuff', 2: 'Ravenclaw', 3: 'Slytherin'}
     house_predictions = [house_mapping[pred] for pred in predictions]
     df = pd.DataFrame(house_predictions, columns=['Predicted House'])
-    df.to_csv(filename, index=True, header=False)
+    df.to_csv(filename, index=False, header=False)
 
-    with open(filename, 'r') as file:
-        house_pred = file.readlines()
-        house_pred = ["Index, Hogwarts House" + '\n'] + house_pred
-    with open(filename, 'w') as file:
-        file.writelines(house_pred)
+    # with open(filename, 'r') as file:
+    #     house_pred = file.readlines()
+    #     house_pred = ["Index, Hogwarts House" + '\n'] + house_pred
+    # with open(filename, 'w') as file:
+    #     file.writelines(house_pred)
 
 
 
 weights, biases = load_weights('weights.json')
-df = pd.read_csv("data/dataset_test.csv")
+df = pd.read_csv("data/modified_dataset.csv")
 X_test = df.drop(['Index', 'Hogwarts House', 'First Name', 'Last Name', 'Birthday', 'Best Hand', 'Arithmancy', 'Potions', 'Care of Magical Creatures'], axis=1)
 X_test = utils.replaceNanWithMean(X_test)
 X_test = scale_columns(X_test)

@@ -9,7 +9,7 @@ def sigmoid(x):
 
 class LogisticRegressionOvA():
 
-    def __init__(self, lr=0.01, n_iters=1000):
+    def __init__(self, lr=0.1, n_iters=1000):
         self.lr = lr
         self.n_iters = n_iters
         self.weights = []

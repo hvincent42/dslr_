@@ -59,8 +59,8 @@ def ft_describe(data: pd.DataFrame) -> pd.DataFrame:
                 "50%": ft_percentile(values, 50),
                 "75%": ft_percentile(values, 75),
                 "Max": ft_max(values),
-                # "CV": ft_std(values) / ft_mean(values)
-                # "Std²": ft_std(values) ** 2,
+                "CV": ft_std(values) / ft_mean(values),
+                "Std²": ft_std(values) ** 2,
             }
     return pd.DataFrame(statistics)
 
