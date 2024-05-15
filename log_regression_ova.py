@@ -1,13 +1,15 @@
 import numpy as np
 import json
+import pandas as pd
+import utils_h as utils
 
 def sigmoid(x):
-    x = np.clip(x, -500, 500)
+    # x = np.clip(x, -500, 500)
     return 1 / (1 + np.exp(-x))
 
 class LogisticRegressionOvA():
 
-    def __init__(self, lr=0.0001, n_iters=10000):
+    def __init__(self, lr=0.01, n_iters=1000):
         self.lr = lr
         self.n_iters = n_iters
         self.weights = []
@@ -42,3 +44,19 @@ class LogisticRegressionOvA():
 
         with open(file_name, 'w') as f:
             json.dump(weights_and_biases, f)
+
+    def calculate_loss(self, X, y):
+        n_samples = len(y)
+        y_one_hot = np.zeros((n_samples, len(self.classes)))
+        
+        for i, c in enumerate(self.classes):
+            y_one_hot[:, i] = (y == c)
+        
+        linear_models = np.dot(X, np.array(self.weights).T) + np.array(self.bias)
+        y_predicted = sigmoid(linear_models)
+        loss = -(y_one_hot * np.log(y_predicted) + (1 - y_one_hot) * np.log(1 - y_predicted))
+        average_loss = np.mean(loss)
+        
+        return average_loss
+        
+        
