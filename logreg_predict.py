@@ -5,7 +5,6 @@ from sklearn.preprocessing import MinMaxScaler
 import utils as utils
 
 
-
 def scale_columns(data):
     
     scaler = MinMaxScaler(feature_range=(0, 10))

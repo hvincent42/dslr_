@@ -39,6 +39,37 @@ def ft_histogram(data: pd.DataFrame) -> None:
     plt.show()
 
 
+def ft_histogram_single(course: str, data: pd.DataFrame) -> None:
+    """
+    Generate a histogram of the data for a single course.
+    
+    Args:
+        course (str): The course to generate the histogram for.
+        data (pd.DataFrame): The DataFrame containing the data.
+    """
+    
+    # Split the data into houses
+    houses = data["Hogwarts House"].unique()
+    houses_color = {
+        "Gryffindor": "red",
+        "Hufflepuff": "yellow",
+        "Ravenclaw": "blue",
+        "Slytherin": "green",
+    }
+    plt.figure(figsize=(7, 7))
+    for house in houses:
+        house_data = data[data["Hogwarts House"] == house]
+        values = [x for x in house_data[course].values if not pd.isnull(x)]
+        if all(isinstance(x, (int, float)) for x in values):
+            plt.hist(values, bins=5, color=houses_color[house], alpha=0.5)
+    
+    plt.title(f"Histogram of {course}")
+    plt.legend(houses, loc="upper right", frameon=False, title="Hogwarts Houses", title_fontsize="large")
+    plt.xlabel("Marks")
+    plt.ylabel("Frequency")
+    plt.show()
+
 if __name__ == "__main__":
     data = load_csv("datasets/dataset_train.csv")
     ft_histogram(data)
+    ft_histogram_single("Arithmancy", data)
