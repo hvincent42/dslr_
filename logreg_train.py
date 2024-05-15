@@ -26,4 +26,6 @@ y_train = df['Hogwarts House']
 
 clf = LogisticRegressionOvA()
 clf.fit(X_train, y_train)
+loss = clf.calculate_loss(X_train, y_train)            
+print("Loss: ", loss)
 clf.save_weights()

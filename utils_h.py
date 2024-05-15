@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def myMax(column):
     max = float('-inf')
@@ -24,7 +25,7 @@ def myCount(column):
 def myMean(column):
     sum = 0
     for n in range(len(column)):
-        if not pd.isnull(column[n]):
+        if not np.isnan(column[n]).all():
             sum += column[n]
     return sum / myCount(column)
 
@@ -95,3 +96,64 @@ def replaceNanWithMean(df):
             if pd.isnull(df[column].iloc[i]):
                 df[column].iloc[i] = mean
     return df
+
+def ft_min(values: list) -> float:
+    """
+    Calculate the minimum value of a list of values.
+
+    Args:
+        values (list): The list of values to calculate the minimum of.
+
+    Returns:
+        float: The minimum value of the values.
+    """
+    try:
+        min_value = values[0]
+        for value in values:
+            if value < min_value:
+                min_value = value
+        return min_value
+    except Exception:
+        return float("NaN")
+
+
+def ft_max(values: list) -> float:
+    """
+    Calculate the maximum value of a list of values.
+
+    Args:
+        values (list): The list of values to calculate the maximum of.
+
+    Returns:
+        float: The maximum value of the values.
+    """
+    try:
+        max_value = values[0]
+        for value in values:
+            if value > max_value:
+                max_value = value
+        return max_value
+    except Exception:
+        return float("NaN")
+
+
+def ft_normalization(data: pd.DataFrame) -> pd.DataFrame:
+    """
+    Normalize the data
+
+    Args:
+        data (pd.DataFrame): The dataset to normalize
+
+    Returns:
+        pd.DataFrame: The normalized dataset
+    """
+    normalized_data = data.copy()
+    for column in data.columns:
+        values = [x for x in data[column].values if not pd.isnull(x)]
+        if all(isinstance(x, (int, float, np.int64, np.float64)) for x in values):
+            min = ft_min(values)
+            max = ft_max(values)
+            normalized_data[column] = (normalized_data[column] - min) / (max - min)
+        else:
+            normalized_data[column] = data[column]
+    return normalized_data

@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import json
 from sklearn.preprocessing import MinMaxScaler
-import utils as utils
+import utils_h as utils
 
 
 def scale_columns(data):
@@ -54,5 +54,5 @@ X_test = scale_columns(X_test)
 predictions = predict(X_test, weights, biases)
 
 
-save_predictions(predictions, 'predictions.csv')
+save_predictions(predictions, 'houses.csv')
 
