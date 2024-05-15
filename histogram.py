@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from utils_h import load_csv
+from utils import load_csv
 
 
 def ft_histogram(data: pd.DataFrame) -> None:
@@ -70,6 +70,6 @@ def ft_histogram_single(course: str, data: pd.DataFrame) -> None:
     plt.show()
 
 if __name__ == "__main__":
-    data = load_csv("datasets/dataset_train.csv")
+    data = load_csv("data/dataset_train.csv")
     ft_histogram(data)
     ft_histogram_single("Arithmancy", data)

@@ -39,7 +39,7 @@ def pair_plot(data: pd.DataFrame) -> None:
 
 
 if __name__ == "__main__":
-    data = utils.load_csv('datasets/dataset_train.csv')
+    data = utils.load_csv('data/dataset_train.csv')
     pair_plot(data)
 
 

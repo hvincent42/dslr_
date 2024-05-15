@@ -24,7 +24,7 @@ def scatter_plot_single(feature1: str, feature2: str, data: pd.DataFrame) -> Non
         house_data = data[data['Hogwarts House'] == house]
         plt.scatter(house_data[feature1], house_data[feature2], color=houses_color[house], alpha=0.7)
 
-    plt.legend(houses, loc='upper left', frameon=False, title='Hogwarts Houses', title_fontsize='large')
+    plt.legend(houses, loc='upper right', frameon=False, title='Hogwarts Houses', title_fontsize='large')
     plt.title(f'Scatter plot of {feature1} vs {feature2}')
     plt.xlabel(feature1)
     plt.ylabel(feature2)
@@ -32,5 +32,5 @@ def scatter_plot_single(feature1: str, feature2: str, data: pd.DataFrame) -> Non
 
 
 if __name__ == '__main__':
-    data = utils.load_csv('datasets/dataset_train.csv')
-    scatter_plot_single('Arithmancy', 'Care of Magical Creatures', data)
+    data = utils.load_csv('data/dataset_train.csv')
+    scatter_plot_single('Defense Against the Dark Arts', 'Astronomy', data)

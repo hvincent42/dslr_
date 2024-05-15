@@ -18,7 +18,7 @@ def scale_columns(data):
 df = pd.read_csv("data/dataset_train.csv")
 
 
-X_train = df.drop(['Index', 'Hogwarts House', 'First Name', 'Last Name', 'Birthday', 'Best Hand'], axis=1)
+X_train = df.drop(['Index', 'Hogwarts House', 'First Name', 'Last Name', 'Birthday', 'Best Hand', 'Arithmancy', 'Potions', 'Care of Magical Creatures'], axis=1)
 X_train = utils.replaceNanWithMean(X_train)
 X_train = scale_columns(X_train)
 y_train = df['Hogwarts House']

@@ -56,7 +56,7 @@ def save_predictions(predictions, filename):
 
 weights, biases = load_weights('weights.json')
 df = pd.read_csv("data/dataset_test.csv")
-X_test = df.drop(['Index', 'Hogwarts House', 'First Name', 'Last Name', 'Birthday', 'Best Hand'], axis=1)
+X_test = df.drop(['Index', 'Hogwarts House', 'First Name', 'Last Name', 'Birthday', 'Best Hand', 'Arithmancy', 'Potions', 'Care of Magical Creatures'], axis=1)
 X_test = utils.replaceNanWithMean(X_test)
 X_test = scale_columns(X_test)
 predictions = predict(X_test, weights, biases)
