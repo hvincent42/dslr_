@@ -39,9 +39,6 @@ def predict(X, weights, biases):
     predicted_class = np.argmax(predictions, axis=1)
     return predicted_class
 
-# def save_predictions(predictions, filename):
-#     df = pd.DataFrame(predictions, columns=['Predicted House'])
-#     df.to_csv(filename, index=False)
 
 def save_predictions(predictions, filename):
     house_mapping = {0: 'Gryffindor', 1: 'Hufflepuff', 2: 'Ravenclaw', 3: 'Slytherin'}
@@ -50,7 +47,6 @@ def save_predictions(predictions, filename):
     df.to_csv(filename, index=False)
 
 weights, biases = load_weights('weights.json')
-# X_test = load_dataset('data/dataset_test.csv')
 df = pd.read_csv("data/dataset_test.csv")
 X_test = df.drop(['Index', 'Hogwarts House', 'First Name', 'Last Name', 'Birthday', 'Best Hand'], axis=1)
 X_test = utils.replaceNanWithMean(X_test)
