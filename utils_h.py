@@ -93,8 +93,9 @@ def replaceNanWithMean(df):
     for column in df.columns:
         mean = myMean(df[column])
         for i in range(len(df[column])):
-            if pd.isnull(df[column].iloc[i]):
-                df[column].iloc[i] = mean
+            if pd.isnull(df.loc[i, column]):
+                df.loc[i, column] = mean 
+                
     return df
 
 def ft_min(values: list) -> float:
